@@ -40,6 +40,8 @@ int main()
 			ShowContact(&con);//传地址可节省空间 
 			break;
 		case SORT:
+			//SortContact(&con);
+			QSortContact(&con);
 			break;
 		case EXIT:
 			printf("退出通讯录");

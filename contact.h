@@ -6,6 +6,7 @@
 #define MAX_ADDR 30
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 enum Option 
 {
 	EXIT,//枚举默认从0开始
@@ -50,3 +51,9 @@ void SearchContact(const struct Contact* ps);
 
 //修改指定联系人
 void ModifyContact(struct Contact* ps);
+
+//按照姓名排序 姓名必须是字符型 用冒泡排序实现
+void SortContact(struct Contact* ps);
+
+//按照姓名排序 用qsort函数实现
+void QSortContact(struct Contact* ps);

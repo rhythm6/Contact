@@ -149,3 +149,34 @@ void ModifyContact(struct Contact* ps)
 		printf("修改完成");
 	}
 }
+//冒泡排序
+void SortContact(struct Contact* ps) 
+{
+	int i = 0;
+	//趟数
+		for (i = 0; i < ps->size - 1; i++)
+		{
+			//每一趟比较的对数
+			int j = 0;
+			for (j = 0; j < ps->size - 1 - i; j++)
+			{
+				//俩个元素比较
+				if (memcmp(ps->data[j].name, ps->data[j + 1].name, MAX_NAME) > 0)
+				{
+					struct PeoInfo tmp;
+					tmp = ps->data[j];
+					ps->data[j] = ps->data[j + 1];//内层下标写成i了 真蠢啊！！！
+					ps->data[j + 1] = tmp;
+				}
+			}
+		}
+}
+int cmp_by_name(const void* e1,const void* e2) 
+{
+	return memcmp(((struct PeoInfo *)e1)->name,((struct PeoInfo*)e2)->name, MAX_NAME);
+}
+//qsort排序
+void QSortContact(struct Contact* ps) 
+{
+	qsort(ps->data,ps->size,sizeof(ps->data[0]),cmp_by_name);
+}
