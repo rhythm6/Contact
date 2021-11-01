@@ -1,5 +1,6 @@
 #pragma once
-#define MAX 1000
+//#define MAX 1000
+#define DEFAULT_SZ 3//起初容量
 #define MAX_NAME 20
 #define MAX_SEX 5
 #define MAX_TELE 12
@@ -18,21 +19,22 @@ enum Option
 	SORT
 };
 //声明函数
-struct PeoInfo //存放一个人的类型
+typedef struct PeoInfo //存放一个人的类型
 {
 	char name[MAX_NAME];//名字
 	int age;//年龄
 	char sex[MAX_SEX];//性别
 	char tele[MAX_TELE];//电话
 	char addr[MAX_ADDR];//住址
-};
+}PeoInfo;
 //通讯录类型
-struct Contact
+typedef struct Contact
 {
-	struct PeoInfo data[MAX];//存放一个信息
+	struct PeoInfo *data;//指向一块空间用来存放通讯录信息
 	int size;//记录当前已经有的元素个数
+	int capacity;//当前通讯录的最大容量
 
-};
+}Contact;
 //声明函数
 //初始化通讯录的函数
 void InitContact(struct Contact* ps);

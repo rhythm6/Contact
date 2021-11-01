@@ -14,7 +14,7 @@ int main()
 {
 	int input = 0;
 	//创建通讯录
-	struct Contact con;//con就是通讯录,里面包含:1000的元素的数 和size
+	struct Contact con;//con就是通讯录,里面包含:capacity容量 和size元素个数 data指针
 	//初始化通讯录
 	InitContact(&con);
 	do 
