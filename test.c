@@ -44,6 +44,7 @@ int main()
 			QSortContact(&con);
 			break;
 		case EXIT:
+			DestoryContact(&con);
 			printf("�˳�ͨѶ¼");
 			break;
 		default:

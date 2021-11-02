@@ -59,3 +59,6 @@ void SortContact(struct Contact* ps);
 
 //按照姓名排序 用qsort函数实现
 void QSortContact(struct Contact* ps);
+
+//退出通讯录时释放空开
+void DestoryContact(struct Contact* ps);

@@ -206,3 +206,10 @@ void QSortContact(struct Contact* ps)
 {
 	qsort(ps->data,ps->size,sizeof(ps->data[0]),cmp_by_name);
 }
+
+//ÊÍ·Å¿Õ¼ä
+void DestoryContact(struct Contact* ps) 
+{
+	free(ps->data);
+	ps->data = NULL;
+}
