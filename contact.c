@@ -10,6 +10,33 @@ void InitContact(struct Contact* ps)
 	}
 	ps->size = 0;//刚开始没有信息
 	ps->capacity = DEFAULT_SZ;//刚开始容量是三个人的大小
+	//把文件中已经存放的通讯录中的信息加载到通讯录中
+	LoadContact(ps);
+}
+//后面定义的函数 前面的函数想用 要声明一下
+void CheckCapacity(struct Contact* ps);
+void LoadContact(struct Contact* ps)
+{
+	PeoInfo tmp = { 0 };
+	FILE* pfRead = fopen("contact.dat","rb");//二进制读
+	if (pfRead == NULL) 
+	{
+		printf("LoadContact::%s\n",strerror(errno));
+		return;
+	}
+	//读取文件,存放到通讯录中
+	while (fread(&tmp, sizeof(PeoInfo), 1, pfRead)) 
+	{
+		CheckCapacity(ps);//检查容量
+		ps->data[ps->size]= tmp;//放到下标为size的位置上
+		ps->size++;//size也要变
+	}
+	//一次读一个人的数据
+	//一次读一个人 什么时候停下来？ 读信息 超过三个人 是不是要扩容了
+	//fread函数 返回的是真实读到的数据个数 也就是说 若每次读一个 当最后一个也读完时
+	//该函数返回0 
+	fclose(pfRead);
+	pfRead = NULL;
 }
 void CheckCapacity(struct Contact* ps) 
 {
@@ -212,4 +239,23 @@ void DestoryContact(struct Contact* ps)
 {
 	free(ps->data);
 	ps->data = NULL;
+}
+
+void SaveContact(Contact* ps) 
+{
+	//.dat一般是数据文件
+	FILE* pfWrite = fopen("contact.dat", "wb");//以二进制的形式写
+	if (pfWrite == NULL) 
+	{
+		printf("SaveContact::%s\n",strerror(errno));
+		return;//无返回值 直接结束掉
+	}
+	//写通讯录中数据到为文件中
+	int i = 0;
+	for (i = 0; i < ps->size; i++) 
+	{
+		fwrite(&(ps->data[i]), sizeof(PeoInfo), 1, pfWrite);
+	}
+	fclose(pfWrite);
+	pfWrite = NULL;
 }

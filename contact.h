@@ -8,6 +8,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<errno.h>
 enum Option 
 {
 	EXIT,//枚举默认从0开始
@@ -16,7 +17,8 @@ enum Option
 	SEARCH,
 	MODIFV,
 	SHOW,
-	SORT
+	SORT,
+	SAVE
 };
 //声明函数
 typedef struct PeoInfo //存放一个人的类型
@@ -62,3 +64,9 @@ void QSortContact(struct Contact* ps);
 
 //退出通讯录时释放空开
 void DestoryContact(struct Contact* ps);
+
+//把通讯录信息保存到文本文件中去
+void SaveContact(struct Contact* ps);
+
+//加载文件中的信息到通讯录
+void LoadContact(Contact* ps);

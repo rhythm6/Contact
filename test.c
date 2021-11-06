@@ -4,10 +4,10 @@
 void menu() 
 {
 	printf("********************************************\n");
-	printf("***********1.add       2.del  **************\n");
+	printf("***********1.add       2.del     ***********\n");
 	printf("***********3.serach    4.modify  ***********\n");
-	printf("***********5.show      6.sort  *************\n");
-	printf("***********0.exit   *************************\n");
+	printf("***********5.show      6.sort    ***********\n");
+	printf("***********7.save      0.exit    ***********\n");
 }
 
 int main() 
@@ -44,8 +44,14 @@ int main()
 			QSortContact(&con);
 			break;
 		case EXIT:
+			//销毁通讯录-释放动态开辟的内存
+			SaveContact(&con);
 			DestoryContact(&con);
 			printf("退出通讯录");
+			break;
+		case SAVE:
+			SaveContact(&con);
+			DestoryContact(&con);
 			break;
 		default:
 			printf("没有该选项");
